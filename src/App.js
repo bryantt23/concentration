@@ -63,9 +63,15 @@ export default function App() {
       {matchedCardCount === cards.length ? (
         <p>You win</p>
       ) : (
-        <div>
+        <div style={{ display: 'flex' }}>
           {cards.map((card, index) => (
-            <p
+            <div
+              style={{
+                backgroundColor: '#BEB7A4',
+                height: 100,
+                width: 100,
+                margin: 10
+              }}
               key={index}
               onClick={e => {
                 console.log(index);
@@ -106,14 +112,18 @@ export default function App() {
                     }
                     // is not matched
                     else {
-                      const flippedCardCopy = { ...flippedCard };
-                      flippedCardCopy.isHidden = true;
-                      curCard.isHidden = true;
-
-                      cardsCopy[flippedCardCopy.index] = flippedCardCopy;
-                      cardsCopy[curCard.index] = curCard;
-
                       setCards([...cardsCopy]);
+
+                      setTimeout(() => {
+                        const flippedCardCopy = { ...flippedCard };
+                        flippedCardCopy.isHidden = true;
+                        curCard.isHidden = true;
+
+                        cardsCopy[flippedCardCopy.index] = flippedCardCopy;
+                        cardsCopy[curCard.index] = curCard;
+
+                        setCards([...cardsCopy]);
+                      }, 1000);
                     }
                     setFlippedCard(null);
                   }
@@ -121,7 +131,7 @@ export default function App() {
               }}
             >
               {card.isHidden ? '?' : card.value}
-            </p>
+            </div>
           ))}
         </div>
       )}
