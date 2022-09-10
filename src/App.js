@@ -69,7 +69,7 @@ export default function App() {
               key={index}
               onClick={e => {
                 console.log(index);
-                const curCard = shuffledCardObjects[index];
+                const curCard = cards[index];
                 const cardsCopy = [...cards];
 
                 if (flippedCard && flippedCard.index === index) {
@@ -106,7 +106,6 @@ export default function App() {
                     }
                     // is not matched
                     else {
-                      debugger;
                       const flippedCardCopy = { ...flippedCard };
                       flippedCardCopy.isHidden = true;
                       curCard.isHidden = true;
